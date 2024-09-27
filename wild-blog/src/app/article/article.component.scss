@@ -5,7 +5,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 16px;
-  margin: 20px auto;
+  color: black;
 
   &:hover {
     transform: scale(1.02);
@@ -19,8 +19,8 @@
   }
 
   p {
-    font-size: 1.5rem;
-    line-height: 10px;
+    font-size: 1rem;
+    line-height: 1.5;
     color: #555;
   }
 
@@ -30,23 +30,9 @@
     margin-bottom: 10px;
   }
 
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-
-    &:hover {
-      background-color: #0056b3;
-    }
+  .popular-article {
+    font-size: 1.5em;
+    text-shadow: 2px 2px 5px gray;
+    font-weight: bold;
   }
 }

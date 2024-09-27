@@ -1,19 +1,38 @@
-<div class="card">
-  @if (article.isPublished) {
-    <h2>{{ article.title }}</h2>
-    <p>By: {{ article.author }}</p>
-    <img [src]="article.imageUrl" alt="Article Image" />
-    <p>{{ article.content }}</p>
-
-    <h3>Leave a Comment:</h3>
-    <input [(ngModel)]="comment" placeholder="Enter your comment" />
-    <p>Your comment: {{ comment }}</p>
-
-    <button (click)="togglePublish()">Dépublier l'article</button>
+<div>
+  @if (articles.length === 0) {
+    <p>Aucun article publié pour le moment</p>
   } @else {
-    <div class="card">
-      <h2>Article Dépublié</h2>
-      <button (click)="togglePublish()">Publier l'article</button>
-    </div>
+    @for (let article of articles) {
+      @if (article.isPublished) {
+        <div class="card">
+          <h2>{{ article.title }}</h2>
+          <p>By: {{ article.author }}</p>
+          <img [src]="article.imageUrl" alt="Article Image" />
+          <p [ngClass]="{'popular-article': article.likes > 100}"
+             [ngStyle]="{'color': article.likes > 150 ? 'green' : 'black'}">
+             Likes: {{ article.likes }}
+          </p>
+        </div>
+      }
+    }
   }
+</div>
+
+<div>
+  <ng-container *ngIf="articles.length === 0">
+    <p>Aucun article publié pour le moment</p>
+  </ng-container>
+
+  <div *ngFor="let article of articles">
+    <ng-container *ngIf="article.isPublished">
+      <div class="card">
+        <h2>{{ article.title }}</h2>
+        <p>By: {{ article.author }}</p>
+        <img [src]="article.imageUrl" alt="Article Image" />
+        <p>{{ article.content }}</p>
+        <p [ngClass]="{'popular-article': article.likes > 100}"
+           [ngStyle]="{'color': article.likes > 150 ? 'green' : 'black'}">Likes: {{ article.likes }}</p>
+      </div>
+    </ng-container>
+  </div>
 </div>

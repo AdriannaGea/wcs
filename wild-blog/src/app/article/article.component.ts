@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -7,27 +8,41 @@ interface Article {
   imageUrl: string;
   content: string;
   isPublished: boolean;
+  likes: number;
 }
 
 @Component({
   selector: 'app-article',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent {
-  article: Article = {
-    title: 'Titre de mon article',
-    author: 'John Doe',
-    imageUrl: 'https://via.placeholder.com/150',
-    content: 'Ceci est le contenu de mon article.',
-    isPublished: true,
-  };
-
-  comment: string = '';
-
-  togglePublish() {
-    this.article.isPublished = !this.article.isPublished;
-  }
+  articles: Article[] = [
+    {
+      title: 'Angular 16: Les nouveautés',
+      author: 'Alice',
+      content: "Les nouveautés d'Angular 16 incluent...",
+      imageUrl: 'https://via.placeholder.com/350x150',
+      isPublished: true,
+      likes: 120,
+    },
+    {
+      title: 'Développer une API REST',
+      author: 'Bob',
+      content: 'Développer une API REST nécessite...',
+      imageUrl: 'https://via.placeholder.com/350x150',
+      isPublished: false,
+      likes: 75,
+    },
+    {
+      title: 'Pourquoi TypeScript est essentiel ?',
+      author: 'Charlie',
+      content: 'TypeScript apporte de la robustesse...',
+      imageUrl: 'https://via.placeholder.com/350x150',
+      isPublished: true,
+      likes: 200,
+    },
+  ];
 }
