@@ -9,7 +9,8 @@ import { CardComponent } from './card/card.component';
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet
+    RouterOutlet,
+    ArticleComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
