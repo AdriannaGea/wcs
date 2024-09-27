@@ -1,4 +1,19 @@
 <div class="card">
-  <h2>Titre de mon article</h2>
-  <p>Contenu de mon article</p>
+  @if (article.isPublished) {
+    <h2>{{ article.title }}</h2>
+    <p>By: {{ article.author }}</p>
+    <img [src]="article.imageUrl" alt="Article Image" />
+    <p>{{ article.content }}</p>
+
+    <h3>Leave a Comment:</h3>
+    <input [(ngModel)]="comment" placeholder="Enter your comment" />
+    <p>Your comment: {{ comment }}</p>
+
+    <button (click)="togglePublish()">Dépublier l'article</button>
+  } @else {
+    <div class="card">
+      <h2>Article Dépublié</h2>
+      <button (click)="togglePublish()">Publier l'article</button>
+    </div>
+  }
 </div>

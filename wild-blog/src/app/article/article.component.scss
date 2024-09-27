@@ -9,7 +9,7 @@
 
   &:hover {
     transform: scale(1.02);
-  transition: transform 0.2s ease;
+    transition: transform 0.2s ease;
   }
 
   h2 {
@@ -22,5 +22,31 @@
     font-size: 1.5rem;
     line-height: 10px;
     color: #555;
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: #0056b3;
+    }
   }
 }
