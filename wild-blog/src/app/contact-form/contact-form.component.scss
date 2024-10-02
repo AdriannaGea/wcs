@@ -1,0 +1,74 @@
+$primary-color: #007bff;
+$error-color: red;
+$border-color: #ddd;
+$background-color: #f9f9f9;
+$input-border-color: #ccc;
+$input-focus-border-color: $primary-color;
+
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  background-color: $background-color;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  fieldset {
+    border: none;
+    margin-bottom: 15px;
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $input-border-color;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: $input-focus-border-color;
+      outline: none;
+    }
+
+    &.ng-invalid.ng-touched {
+      border-color: $error-color;
+    }
+  }
+
+  button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: $primary-color;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+
+  .error {
+    color: $error-color;
+    font-size: 14px;
+  }
+}
