@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 interface Article {
   id: number;
@@ -14,16 +13,13 @@ interface Article {
 }
 
 @Component({
-  selector: 'app-article',
+  selector: 'app-home-page',
   standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss'],
+  imports: [CommonModule, RouterLink],
+  templateUrl: './home-page.component.html',
+  styleUrl: './home-page.component.scss',
 })
-export class ArticleComponent {
-  articleId: number | undefined;
-  article: Article | undefined;
-
+export class HomePageComponent {
   articles: Article[] = [
     {
       id: 1,
@@ -53,14 +49,5 @@ export class ArticleComponent {
       likes: 200,
     },
   ];
-
-  constructor(private route: ActivatedRoute, private router: Router) {
-    this.articleId = Number(this.route.snapshot.paramMap.get('id'));
-    this.article = this.articles.find(
-      (article) => article.id === this.articleId
-    );
-    if (!this.article) {
-      this.router.navigate(['/not-found']);
-    }
-  }
 }
+
