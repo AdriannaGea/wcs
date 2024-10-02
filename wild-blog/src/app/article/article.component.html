@@ -1,38 +1,17 @@
 <div>
-  @if (articles.length === 0) {
-    <p>Aucun article publié pour le moment</p>
-  } @else {
-    @for (let article of articles) {
-      @if (article.isPublished) {
-        <div class="card">
-          <h2>{{ article.title }}</h2>
-          <p>By: {{ article.author }}</p>
-          <img [src]="article.imageUrl" alt="Article Image" />
-          <p [ngClass]="{'popular-article': article.likes > 100}"
-             [ngStyle]="{'color': article.likes > 150 ? 'green' : 'black'}">
-             Likes: {{ article.likes }}
-          </p>
-        </div>
-      }
-    }
-  }
-</div>
-
-<div>
-  <ng-container *ngIf="articles.length === 0">
-    <p>Aucun article publié pour le moment</p>
-  </ng-container>
-
-  <div *ngFor="let article of articles">
-    <ng-container *ngIf="article.isPublished">
-      <div class="card">
-        <h2>{{ article.title }}</h2>
-        <p>By: {{ article.author }}</p>
-        <img [src]="article.imageUrl" alt="Article Image" />
-        <p>{{ article.content }}</p>
-        <p [ngClass]="{'popular-article': article.likes > 100}"
-           [ngStyle]="{'color': article.likes > 150 ? 'green' : 'black'}">Likes: {{ article.likes }}</p>
-      </div>
-    </ng-container>
+  @for (article of articles; track article.id) { @if (article.id === articleId)
+  {
+  <div class="card">
+    <h2>{{ article.title }}</h2>
+    <p>By: {{ article.author }}</p>
+    <img [src]="article.imageUrl" alt="Article Image" />
+    <p
+      [ngClass]="{ 'popular-article': article.likes > 100 }"
+      [ngStyle]="{ color: article.likes > 150 ? 'green' : 'black' }"
+    >
+      Likes: {{ article.likes }}
+    </p>
+    <p>{{ article.content }}</p>
   </div>
+  } }
 </div>
