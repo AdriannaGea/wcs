@@ -1,4 +1,7 @@
 <form #contactForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+<h2 style="display: flex; justify-content: center;">Formulaire de contact</h2>
+
   <fieldset>
     <label for="lastname">Nom</label>
     <input id="lastname" name="lastname" type="text" [(ngModel)]="newMessage.lastname" #lastname="ngModel" required minlength="2" maxlength="15" />
