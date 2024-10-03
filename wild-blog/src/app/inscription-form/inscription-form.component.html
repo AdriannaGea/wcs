@@ -1,0 +1,64 @@
+<form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="username">Nom d'utilisateur</label>
+    <input id="username" formControlName="username">
+    @if (inscriptionForm.get('username')?.invalid && inscriptionForm.get('username')?.touched) {
+      <div class="error-message">
+        @if (inscriptionForm.get('username')?.errors?.['required']) {
+          <span>Le nom d'utilisateur est obligatoire.</span>
+        }
+        @if (inscriptionForm.get('username')?.errors?.['minlength']) {
+          <span>Le nom d'utilisateur doit contenir au moins 3 caractères.</span>
+        }
+      </div>
+    }
+  </div>
+
+
+  <div>
+    <label for="email">Email</label>
+    <input id="email" formControlName="email">
+    @if (inscriptionForm.get('email')?.invalid && inscriptionForm.get('email')?.touched) {
+      <div class="error-message">
+        @if (inscriptionForm.get('email')?.errors?.['required']) {
+          <span>L'email est obligatoire.</span>
+        }
+        @if (inscriptionForm.get('email')?.errors?.['email']) {
+          <span>L'email n'est pas valide.</span>
+        }
+      </div>
+    }
+  </div>
+
+
+  <div formGroupName="passwords">
+
+    <div>
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" formControlName="password">
+      @if (inscriptionForm.get('passwords.password')?.invalid && inscriptionForm.get('passwords.password')?.touched) {
+        <div class="error-message">
+          @if (inscriptionForm.get('passwords.password')?.errors?.['required']) {
+            <span>Le mot de passe est requis.</span>
+          }
+          @if (inscriptionForm.get('passwords.password')?.errors?.['securePassword']) {
+            <span>Le mot de passe doit contenir au moins 12 caractères, avec une majuscule, une minuscule, un chiffre, et un caractère spécial.</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div>
+      <label for="confirmPassword">Confirmer le mot de passe</label>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword">
+      @if (inscriptionForm.get('passwords')?.errors?.['passwordsMismatch'] && inscriptionForm.get('passwords')?.touched) {
+        <div class="error-message">
+          <span>Les mots de passe ne correspondent pas.</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="inscriptionForm.invalid">S'inscrire</button>
+</form>

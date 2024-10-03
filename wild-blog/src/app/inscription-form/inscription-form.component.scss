@@ -1,0 +1,80 @@
+$form-background: #f9f9f9;
+$form-border: #e0e0e0;
+$form-label-color: #333;
+$input-border-color: #ccc;
+$input-focus-border-color: #4a90e2;
+$error-background: #f8d7da;
+$error-border: #f5c6cb;
+$error-color: #721c24;
+$success-color: #5cb85c;
+$font-family: 'Arial', sans-serif;
+
+form {
+  background-color: $form-background;
+  border: 1px solid $form-border;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  label {
+    display: block;
+    font-weight: bold;
+    color: $form-label-color;
+    margin-bottom: 5px;
+  }
+
+  input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid $input-border-color;
+    border-radius: 4px;
+    font-size: 16px;
+
+    &:focus {
+      border-color: $input-focus-border-color;
+      outline: none;
+      box-shadow: 0 0 5px rgba($input-focus-border-color, 0.5);
+    }
+  }
+
+  .error-message {
+    display: block;
+    background-color: $error-background;
+    color: $error-color;
+    border: 1px solid $error-border;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    transition: background-color 0.3s, border-color 0.3s;
+
+    &:hover {
+      background-color: lighten($error-background, 5%);
+      border-color: lighten($error-border, 5%);
+    }
+  }
+
+  button {
+    background-color: $input-focus-border-color;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken($input-focus-border-color, 10%);
+    }
+
+    &:disabled {
+      background-color: $input-border-color;
+      cursor: not-allowed;
+    }
+  }
+}
