@@ -1,6 +1,5 @@
-<div>
-  @for (article of articles; track article.id) { @if (article.id === articleId)
-  {
+  @if (article) {
+<div [routerLink]="['/article', article.id]">
   <div class="card">
     <h2>{{ article.title }}</h2>
     <p>By: {{ article.author }}</p>
@@ -13,5 +12,5 @@
     </p>
     <p>{{ article.content }}</p>
   </div>
-  } }
 </div>
+    }
