@@ -50,5 +50,12 @@ export class HomePageComponent {
       likes: 200,
     },
   ];
-}
 
+  likedMessage: string = '';
+
+  onArticleLiked(article: Article) {
+    article.likes++;
+    this.likedMessage = `L'article "${article.title}" vient d'être liké.`;
+  }
+
+}

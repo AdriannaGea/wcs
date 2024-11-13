@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 interface Article {
   id: number;
@@ -15,10 +16,17 @@ interface Article {
 @Component({
   selector: 'app-article',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent {
   @Input() article: Article | undefined;
+  @Output() likeEvent = new EventEmitter<Article>();
+
+  onLike() {
+    if (this.article) {
+      this.likeEvent.emit(this.article);
+    }
+  }
 }

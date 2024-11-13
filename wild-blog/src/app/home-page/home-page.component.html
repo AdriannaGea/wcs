@@ -3,9 +3,7 @@
     <p>Aucun article publié pour le moment</p>
   } @else {
     @for (article of articles; track article.id) {
-      @if (article.isPublished) {
-        <app-article [article]="article"></app-article>
-      }
+      <app-article [article]="article" (likeEvent)="onArticleLiked($event)"></app-article>
     }
   }
 </div>
