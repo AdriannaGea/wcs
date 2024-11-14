@@ -1,14 +1,19 @@
 @if (article) {
-  <div class="card">
+
+<div class="card">
     <h2>{{ article.title }}</h2>
-    <p>By: {{ article.author }}</p>
-    <img [src]="article.imageUrl" alt="Article Image" />
-    <p
-      [ngClass]="{ 'popular-article': article.likes > 100 }"
-      [ngStyle]="{ color: article.likes > 150 ? 'green' : 'black' }">
-      Likes: {{ article.likes }}
+    <p>{{ article.content }}</p>
+    <img [src]="article.image" alt="Article image {{ article.title }}" />
+    <p>Category: {{ article.categoryName }}</p>
+  <p
+      [ngClass]="{ 'popular-article': article.likeCount > 100 }"
+      [ngStyle]="{ color: article.likeCount > 150 ? 'green' : 'black' }">
+      Likes: {{ article.likeCount }}
     </p>
     <button class="btn-read-more" (click)="onLike()">J'aime</button>
-    <a [routerLink]="['/article', article.id]" class="btn-read-more">Lire l'article</a>
-  </div>
+  <a [routerLink]="['/article', article.id]" class="btn-read-more">Lire l'article</a>
+ <p *ngIf="article.likeCount > 100" class="popular-article">This article is popular!</p>
+
+</div>
 }
+

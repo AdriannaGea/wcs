@@ -1,61 +1,52 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { ArticleComponent } from '../article/article.component';
+import { HttpClientModule } from '@angular/common/http';
 
 interface Article {
   id: number;
   title: string;
-  author: string;
-  imageUrl: string;
   content: string;
+  createdAt: string;
+  image: string;
+  likeCount: number;
   isPublished: boolean;
-  likes: number;
+  categoryName: string;
+  isLiked: boolean;
 }
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, ArticleComponent],
+  imports: [CommonModule, RouterLink, ArticleComponent, HttpClientModule],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss',
+  styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent {
-  articles: Article[] = [
-    {
-      id: 1,
-      title: 'Angular 16: Les nouveautés',
-      author: 'Alice',
-      content: "Les nouveautés d'Angular 16 incluent...",
-      imageUrl: 'https://via.placeholder.com/350x150',
-      isPublished: true,
-      likes: 120,
-    },
-    {
-      id: 2,
-      title: 'Développer une API REST',
-      author: 'Bob',
-      content: 'Développer une API REST nécessite...',
-      imageUrl: 'https://via.placeholder.com/350x150',
-      isPublished: false,
-      likes: 75,
-    },
-    {
-      id: 3,
-      title: 'Pourquoi TypeScript est essentiel ?',
-      author: 'Charlie',
-      content: 'TypeScript apporte de la robustesse...',
-      imageUrl: 'https://via.placeholder.com/350x150',
-      isPublished: true,
-      likes: 200,
-    },
-  ];
-
+export class HomePageComponent implements OnInit {
+  articles: Article[] = [];
   likedMessage: string = '';
 
-  onArticleLiked(article: Article) {
-    article.likes++;
-    this.likedMessage = `L'article "${article.title}" vient d'être liké.`;
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.getArticles();
   }
 
+  getArticles() {
+    this.http.get<Article[]>('http://localhost:3000/articles').subscribe({
+      next: (data) => {
+        this.articles = data;
+      },
+      error: (err) => {
+        console.error('Error fetching articles', err);
+      },
+    });
+  }
+
+  onArticleLiked(article: Article) {
+    article.likeCount++;
+    this.likedMessage = `L'article "${article.title}" vient d'être liké.`;
+  }
 }
