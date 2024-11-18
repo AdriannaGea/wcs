@@ -1,0 +1,16 @@
+<div id="root">
+  <main class="main-container">
+    <router-outlet></router-outlet>
+  </main>
+  <nav class="navbar">
+    <div>
+      <button class="primary-btn btn" [routerLink]="['/']">Home</button>
+      <button class="primary-btn btn" [routerLink]="['/cupcakes']">
+        🧁 My cupcakes
+      </button>
+      <button class="secondary-btn btn" [routerLink]="['/instructions']">
+        Instructions
+      </button>
+    </div>
+  </nav>
+</div>
